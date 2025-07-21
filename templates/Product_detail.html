@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - Product Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Basic styling for product detail page */
+        .product-detail-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .product-detail-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .product-detail-info {
+            text-align: center;
+        }
+        .product-detail-info h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .product-detail-info p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .product-detail-info .price {
+            font-size: 1.8em;
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .product-detail-info .stock {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/">My E-commerce App</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Shop</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('orders') }}">My Orders</a></li>
+                    <li>Welcome, {{ current_user.username }}!</li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="product-detail-container">
+                <img src="{{ product.imageUrl }}" alt="{{ product.name }}" class="product-detail-image">
+                <div class="product-detail-info">
+                    <h2>{{ product.name }}</h2>
+                    <p class="price">${{ "%.2f"|format(product.price) }}</p>
+                    <p class="stock">Currently in stock: {{ product.stock }} units</p>
+                    <p>This is a high-quality {{ product.name | lower }} designed for optimal performance and user satisfaction.</p>
+
+                    {% if product.stock > 0 %}
+                        <button class="add-to-cart-btn"
+                            data-id="{{ product.id }}"
+                            data-name="{{ product.name }}"
+                            data-price="{{ product.price }}"
+                            data-stock="{{ product.stock }}">Add to Cart</button>
+                    {% else %}
+                        <p style="color: red;">Out of Stock</p>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{{ url_for('index') }}" class="back-link">&larr; Back to Products</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 E-commerce App. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Add to Cart functionality for the product detail page
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartBtn = document.querySelector('.product-detail-info .add-to-cart-btn');
+
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', (event) => {
+                    const { id, name, price, stock } = event.target.dataset;
+                    // Assuming addToCart function is globally available from script.js
+                    // or you could redefine a simpler version just for this page.
+                    // For simplicity, let's call the one from script.js, which means
+                    // script.js needs to handle cart logic even if not on index page directly.
+
+                    // For this to work, the 'cart' array and 'updateCartDisplay' from script.js
+                    // need to be accessible. It's usually better to encapsulate cart logic
+                    // into a separate module or object, but for simple apps, global is fine.
+                    // For now, we'll rely on the existing script.js being loaded and its functions.
+
+                    // A more robust solution might involve:
+                    // 1. Importing addToCart if using modules, or
+                    // 2. Making a direct API call to add to cart, and then
+                    //    redirecting to the cart page or showing a success message.
+
+                    // For now, we'll assume the main script.js's addToCart is available.
+                    // This might require a small adjustment in how script.js is structured
+                    // to make `cart` and `updateCartDisplay` globally accessible or
+                    // passed around. For simplicity, we'll just call `addToCart` and 
+                    // expect the main script.js to handle the rest.
+
+                    // **IMPORTANT:** The current `script.js` structure has `cart` and related
+                    // functions *inside* the `DOMContentLoaded` listener of `index.html`.
+                    // To make `addToCart` work universally, we need to make `cart` and `addToCart`
+                    // (and `updateCartDisplay`) globally accessible or refactor.
+                    // Let's refine `script.js` next to properly support this.
+
+                    // For now, let's simulate the add to cart.
+                    // In the next step, we'll adjust script.js to make addToCart reusable.
+                    alert(`Added "${name}" to cart! (Functionality will be fully linked in next step)`);
+                    // Ideally, you'd call a function from script.js like:
+                    // window.addToCart({ id: parseInt(id), name, price: parseFloat(price), stock: parseInt(stock) });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

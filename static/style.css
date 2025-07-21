@@ -1,0 +1,224 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+/* Main Content Area */
+main {
+    display: flex; /* Arranges product grid and cart side-by-side */
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px; /* Limits overall width of the content */
+    margin: 20px auto; /* Centers the main content */
+    gap: 20px; /* Space between the product grid and the cart */
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Product Grid Layout */
+.product-grid {
+    display: grid; /* Enables CSS Grid for product display */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Creates responsive columns */
+    gap: 20px; /* Space between individual product cards */
+    flex: 3; /* Allows the product grid to take up more space in the main flex container */
+}
+
+/* Individual Product Card Styles */
+.product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex; /* Makes content inside card flexible */
+    flex-direction: column; /* Stacks content vertically */
+    justify-content: space-between; /* Pushes button to the bottom */
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 200px; /* Fixed height for consistent image display */
+    object-fit: contain; /* Ensures images fit without cropping or distortion */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.product-card .price {
+    font-size: 1.1rem;
+    color: #e67e22; /* Orange */
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-card button {
+    background-color: #007bff; /* Blue */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.product-card button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Shopping Cart Section Styles */
+.cart-section {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex: 1; /* Allows cart section to take less space in the main flex container */
+    min-width: 280px; /* Ensures cart doesn't become too narrow */
+}
+
+.cart-section h2 {
+    text-align: left;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+#cart-items {
+    min-height: 100px; /* Provides space even when cart is empty */
+    margin-bottom: 15px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee; /* Dashed line between items */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 5px; /* Space between elements within cart item */
+}
+
+.cart-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.cart-item p {
+    margin: 0;
+    flex-grow: 1;
+    min-width: 120px; /* Ensure name doesn't get too squished */
+}
+
+/* Quantity Control Styles */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden; /* Ensures buttons and span look connected */
+}
+
+.quantity-control button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    line-height: 1; /* Adjusts vertical alignment */
+}
+
+.quantity-control button:hover {
+    background-color: #e0e0e0;
+}
+
+.quantity-control .item-quantity {
+    padding: 5px 10px;
+    background-color: white;
+    font-size: 0.9em;
+    min-width: 20px; /* Ensure quantity display has enough space */
+    text-align: center;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.cart-item .remove-from-cart {
+    background-color: #dc3545; /* Red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease;
+}
+
+.cart-item .remove-from-cart:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+#cart-total {
+    font-weight: bold;
+    color: #28a745; /* Green */
+}
+
+#checkout-button {
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 100%; /* Full width button */
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#checkout-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333; /* Dark grey */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative; /* Or fixed if you want it always at bottom of viewport */
+    bottom: 0;
+    width: 100%;
+}
+
+/* Checkout Message Styles (for the success message) */
+#checkout-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: green; /* Default color, can be changed by JS */
+    padding: 10px;
+}s
